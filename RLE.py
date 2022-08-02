@@ -1,15 +1,17 @@
 def coding(text):
     counter = 1
     coded = ''
-    for i in range(1, len(text)):
-        if text[i] == text[i-1]:
-            counter += 1
+    i = 0
+    while i < len(text):
+        for j in range(i+1, len(text)):
+            if text[j] == text[i]:
+                counter += 1
+        if counter == 1:
+            coded += f'{text[i]}'
         else:
-            if counter == 1:
-                coded += f'{text[i-1]}'
-            else:
-                coded += f'#{counter}{text[i-1]}'
-                counter = 1
+            coded += f'#{counter}{text[i]}'
+        i += counter
+        counter = 1
     return coded
 
 
@@ -26,9 +28,15 @@ def decoding(text):
     return decoded
 
 
-string1 = 'аббббвввввг'
+string1 = 'аббббввввввг'
 print(string1)
 string2 = coding(string1)
 print(string2)
 string3 = decoding(string2)
 print(string3)
+string4 = 'а111бббб4'
+print(string4)
+string5 = coding(string4)
+print(string5)
+string6 = decoding(string5)
+print(string6)
